@@ -18,17 +18,24 @@ public class Departments {
     private int building;
         @Column(name = "Financing")
         private double financing;
-        @Column(name = "Name")
-        private String name;
+        @Column(name = "Namedep")
+        private String namedep;
+        @Column(name = "DoctorId")
+        private int doctorId;
 
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Doctorid", nullable = false)
+    private Doctors doctors;
 
     public Departments () { }
 
-        public Departments(int id, int building, double financing, String name) {
+        public Departments(int id, int building, double financing, String namedep, int doctorId) {
             this.id = id;
             this.building = building;
             this.financing = financing;
-            this.name = name;
+            this.namedep = namedep;
+            this.doctorId = doctorId;
         }
 
         public int getId() {
@@ -56,11 +63,19 @@ public class Departments {
         }
 
         public String getName() {
-            return name;
+            return namedep;
         }
 
         public void setName(String name) {
-            this.name = name;
+            this.namedep = name;
+        }
+
+        public int getDoctorId() {
+            return doctorId;
+        }
+
+        public void setDoctorId(int doctorId) {
+            this.doctorId = doctorId;
         }
 
         @Override
@@ -69,7 +84,8 @@ public class Departments {
                     "id=" + id +
                     ", building=" + building +
                     ", financing=" + financing +
-                    ", name='" + name + '\'' +
+                    ", name='" + namedep + '\'' +
+                    ", doctorId=" + doctorId +
                     '}';
         }
     }

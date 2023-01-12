@@ -1,6 +1,6 @@
 package by.step.hibernate.example.kornyshev.service;
 
-import by.step.hibernate.example.kornyshev.dao.models.Departments;
+import by.step.hibernate.example.kornyshev.dao.models.Doctors;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -10,20 +10,21 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class DepartmentsService {
-    public List<Departments> getAllDepartments() {
+
+public class DoctorsService {
+    public List<Doctors> getAllDoctors() {
         Transaction transaction = null;
-        List<Departments> resultSet = null;
+        List<Doctors> resultSet = null;
         try (Session session = HibernateConfiguration.getSessionFactory().openSession()) {
 
             transaction = session.beginTransaction();
 
             CriteriaBuilder cb = session.getCriteriaBuilder();
-            CriteriaQuery<Departments> cq = cb.createQuery(Departments.class);
-            Root<Departments> rootEntry = cq.from(Departments.class);
-            CriteriaQuery<Departments> all = cq.select(rootEntry);
+            CriteriaQuery<Doctors> cq = cb.createQuery(Doctors.class);
+            Root<Doctors> rootEntry = cq.from(Doctors.class);
+            CriteriaQuery<Doctors> all = cq.select(rootEntry);
 
-            TypedQuery<Departments> allQuery = session.createQuery(all);
+            TypedQuery<Doctors> allQuery = session.createQuery(all);
 
             resultSet = allQuery.getResultList();
             transaction.commit();
@@ -37,7 +38,7 @@ public class DepartmentsService {
         return resultSet;
     }
 
-    public void saveUser(Departments user) {
+    public void saveUser(Doctors user) {
         Transaction transaction = null;
         try (Session session = HibernateConfiguration.getSessionFactory().openSession()) {
             // start a transaction

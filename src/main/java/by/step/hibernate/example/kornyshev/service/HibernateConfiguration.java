@@ -1,6 +1,7 @@
 package by.step.hibernate.example.kornyshev.service;
 
 import by.step.hibernate.example.kornyshev.dao.models.Departments;
+import by.step.hibernate.example.kornyshev.dao.models.Doctors;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -35,7 +36,7 @@ public class HibernateConfiguration {
 
                 configuration.setProperties(settings);
 
-                //configuration.addAnnotatedClass(User.class);
+                configuration.addAnnotatedClass(Doctors.class);
                 configuration.addAnnotatedClass(Departments.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
